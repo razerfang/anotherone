@@ -1,0 +1,22 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('checkout') {
+            steps {
+                checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[credentialsId: '408df1ba-9580-4f38-835e-8d7df1a5a2a4', url: 'https://github.com/razerfang/anotherone.git']]])
+            }
+        }
+        stage('build') {
+            steps {
+                git credentialsId: '408df1ba-9580-4f38-835e-8d7df1a5a2a4', url: 'https://github.com/razerfang/anotherone.git'
+                bat label:'' ,script:'file1.py'
+            }
+        }
+        stage('test') {
+            steps {
+                echo "successcjsbvlksjfh"
+            }
+        }
+    }
+}
